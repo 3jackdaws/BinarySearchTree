@@ -55,7 +55,7 @@ BSTree<T>::BSTree() : _root(nullptr)
 }
 
 template <typename T>
-BSTree<T>::BSTree(const BSTree<T> & cp)
+BSTree<T>::BSTree(const BSTree<T> & cp) : _root(nullptr)
 {
     std::queue<TNode<T> *> queue;
     TNode<T> * current_node;

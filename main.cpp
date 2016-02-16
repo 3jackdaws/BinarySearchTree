@@ -10,6 +10,7 @@
 using std::cout;
 using std::endl;
 #include "BSTree.h"
+#define _CRTDBG_MAP_ALLOC
 
 void Print(int data)
 {
@@ -18,6 +19,7 @@ void Print(int data)
 
 int main(int argc, const char * argv[])
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     BSTree<int> tree;
     cout<<"Inserting several values"<<endl;
     tree.Insert(10);
@@ -51,7 +53,7 @@ int main(int argc, const char * argv[])
     cout<<"\n\nTest delete 35"<<endl;
     cout<<"\n\nBefore"<<endl;
     tree.InOrderTraverse(&Print);
-    tree.Delete(35);
+    //tree.Delete(35);
     cout<<"\n\nAfter"<<endl;
     tree.InOrderTraverse(&Print);
     
@@ -106,13 +108,14 @@ int main(int argc, const char * argv[])
     
     
     
-    cout<<"\n\nRandomly put twenty million nodes into the tree: "<<endl;
-    srand(4998503859);
-    for (int i = 1; i<20000000; i++)
+    cout<<"\n\nRandomly put 2 million nodes into the tree: "<<endl;
+    srand(0x4872480A);
+	tree.Purge();
+    for (int i = 1; i<2000001; i++)
     {
         tree.Insert(rand());
-        if(i%(1024*1024) == 0)
-            cout<<"~"<<i/(1024*1024)<<" Million Nodes, Height: "<<tree.Height()<<endl;
+        if(i%(100000) == 0)
+            cout<<"~"<<i/(1000)<<" Thousand Nodes, Height: "<<tree.Height()<<endl;
     }
     
     
